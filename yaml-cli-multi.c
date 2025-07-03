@@ -1,4 +1,5 @@
 /*
+ * Original source code by Joakim(https://github.com/snokvist) : https://github.com/sickgreg/OpenIPC-air_manager/blob/main/src/stupid-yaml.c
  * YAML Configurator
  *
  * This program parses a subset of YAML configuration files and supports:
