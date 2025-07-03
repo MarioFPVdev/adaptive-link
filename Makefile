@@ -1,14 +1,23 @@
-SRC = alink_drone.c
-OBJ = ./alink_drone
+# Define the compiler and flags
+CC = gcc
+CFLAGS = -Wall -g
 
-.PHONY: clean adaptive-link
-adaptive-link: $(OBJ)
+# Define the source files and the executable name
+SRC = $(wildcard *.c)
+OBJ = $(SRC:.c=.o)
+EXECUTABLE = myprogram
 
-$(OBJ): $(SRC:%.c=%.o)
-	$(CC) $^ -rdynamic $(OPT) -o $@
+# Default target: build the executable
+all: $(EXECUTABLE)
 
-%.o: %.c Makefile
-	$(CC) -c $< $(OPT) -o $@
+# Rule to build the executable
+$(EXECUTABLE): $(OBJ)
+	$(CC) $(CFLAGS) -o $@ $^
 
+# Rule to compile each .c file into a .o file
+%.o: %.c
+	$(CC) $(CFLAGS) -c -o $@ $<
+
+# Clean up object files and the executable
 clean:
-	rm -rf $(SRC:%.c=%.o) $(OBJ)
+	rm -f $(OBJ) $(EXECUTABLE)
